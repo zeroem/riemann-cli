@@ -1,0 +1,18 @@
+[root]
+name = "write-riemann"
+version = "0.1.0"
+dependencies = [
+ "getopts 0.2.14 (registry+https://github.com/rust-lang/crates.io-index)",
+ "protobuf 1.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "getopts"
+version = "0.2.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "protobuf"
+version = "1.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+

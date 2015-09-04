@@ -1,0 +1,17 @@
+[package]
+name = "write-riemann"
+version = "0.1.0"
+authors = ["Darrell Hamilton <darrell.noice@gmail.com>"]
+
+[dependencies]
+getopts = "0.2.14"
+protobuf = "1.0.2"
+
+[[bin]]
+name = "write-riemann"
+path = "src/main.rs"
+
+[lib]
+name = "riemann_protobuf"
+path = "src/riemann.rs"
+
