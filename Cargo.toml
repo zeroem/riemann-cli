@@ -1,5 +1,5 @@
 [package]
-name = "write-riemann"
+name = "riemann-cli"
 version = "0.1.0"
 authors = ["Darrell Hamilton <darrell.noice@gmail.com>"]
 
@@ -8,7 +8,11 @@ getopts = "0.2.14"
 protobuf = "1.0.2"
 
 [[bin]]
-name = "write-riemann"
+name = "riemann-write"
+path = "src/main.rs"
+
+[[bin]]
+name = "riemann-read"
 path = "src/main.rs"
 
 [lib]
