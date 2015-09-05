@@ -136,6 +136,20 @@ pub fn marshall_onto(matches: &Matches, event: Event) -> Result<Event,String> {
         event.mut_tags().push(s);
     }
 
+    for a in matches.opt_strs("attribute") {
+        let mut parts = a.splitn(2, '=');
+        let mut attr = Attribute::new();
+
+        // There should always be at least one element...?
+        attr.set_key(parts.next().unwrap().to_string());
+
+        if let Some(v) = parts.next() {
+            attr.set_value(v.to_string());
+        }
+
+        event.mut_attributes().push(attr);
+    }
+
     if let Some(t) = matches.opt_str("ttl") {
         match t.parse::<f32>() {
             Ok(f) => event.set_ttl(f),
