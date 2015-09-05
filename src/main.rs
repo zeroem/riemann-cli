@@ -9,7 +9,7 @@ use std::env;
 use self::options::*;
 
 fn print_usage(program: &str, opts: Options) {
-    let brief = format!("{} [options] <service>", program);
+    let brief = format!("{} [options] [SERVICE [METRIC]]", program);
     print!("{}", opts.usage(&brief));
 }
 
@@ -27,13 +27,9 @@ fn main() {
         return;
     }
 
-    let event = marshall(matches);
-    println!("{:?}", event);
+    let event = marshall(&matches);
+    let rs = options::RiemannServer::from_args(&matches);
 
-//    let input = if !matches.free.is_empty() {
-//        matches.free[0].clone()
-//    } else {
-//        print_usage(&program, opts);
-//        return;
-//    };
+    println!("{:?}", event);
+    println!("{:?}", rs);
 }
