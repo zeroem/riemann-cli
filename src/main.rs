@@ -7,6 +7,9 @@ mod options;
 use getopts::Options;
 use std::env;
 use self::options::*;
+use protobuf::core::*;
+use std::net::TcpStream;
+use std::io::prelude::*;
 
 fn print_usage(program: &str, opts: Options) {
     let brief = format!("{} [options] [SERVICE [METRIC]]", program);
@@ -22,6 +25,7 @@ fn main() {
         Ok(m) => { m }
         Err(f) => { panic!(f.to_string()) }
     };
+
     if matches.opt_present("h") {
         print_usage(&program, opts);
         return;
@@ -32,4 +36,10 @@ fn main() {
 
     println!("{:?}", event);
     println!("{:?}", rs);
+
+    let mut stream = TcpStream::connect("127.0.0.1:5555").unwrap();
+    if let Ok(e) = event {
+        println!("{:?}", e.write_to_bytes());
+        stream.write(&e.write_to_bytes().unwrap());
+    }
 }
